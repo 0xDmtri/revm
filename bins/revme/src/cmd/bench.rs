@@ -4,6 +4,7 @@ pub mod evm_build;
 pub mod gas_cost_estimator;
 pub mod snailtracer;
 pub mod subcall;
+pub mod subcall_breakdown;
 pub mod transfer;
 pub mod transfer_multi;
 
@@ -15,6 +16,7 @@ pub enum BenchName {
     Burntpix,
     Snailtracer,
     Subcall,
+    SubcallBreakdown,
     Transfer,
     EvmBuild,
     TransferMulti,
@@ -27,6 +29,7 @@ impl BenchName {
         BenchName::Burntpix,
         BenchName::Snailtracer,
         BenchName::Subcall,
+        BenchName::SubcallBreakdown,
         BenchName::Transfer,
         BenchName::TransferMulti,
         BenchName::EvmBuild,
@@ -39,6 +42,7 @@ impl BenchName {
             BenchName::Burntpix => "burntpix",
             BenchName::Snailtracer => "snailtracer",
             BenchName::Subcall => "subcall",
+            BenchName::SubcallBreakdown => "subcall-breakdown",
             BenchName::Transfer => "transfer",
             BenchName::EvmBuild => "evm-build",
             BenchName::TransferMulti => "transfer-multi",
@@ -86,6 +90,9 @@ impl Cmd {
             }
             BenchName::Subcall => {
                 subcall::run(&mut criterion);
+            }
+            BenchName::SubcallBreakdown => {
+                subcall_breakdown::run(&mut criterion);
             }
             BenchName::Transfer => {
                 transfer::run(&mut criterion);
